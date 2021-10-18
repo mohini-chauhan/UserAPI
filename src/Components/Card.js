@@ -2,33 +2,35 @@ import React from 'react'
 import avatar from "./avatar.svg";
 import "./Card.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faEnvelope} from '@fortawesome/free-regular-svg-icons';
-import {faPhoneSquareAlt,faGlobe,faHeart,faTrash,faPen } from '@fortawesome/free-solid-svg-icons'
+import {faEnvelope,faHeart as farHeart} from '@fortawesome/free-regular-svg-icons';
+import {faPhoneSquareAlt,faGlobe,faTrash,faPen,faHeart as fasHeart } from '@fortawesome/free-solid-svg-icons'
 
-const Card = () => {
+
+const Card = (props) => {
+    console.log (typeof props.text)
     return (
+        <>
+        {typeof props.text!='undefined'?(
         <div className="main-container">
             <section className="card-container">
                 <section className="card-avatar">
                     <img src={avatar} alt="avatar"/>
-                    <p>Jennie</p>
-                </section>
+                </section>            
                 <section className="card-content-container">
-                    <div><FontAwesomeIcon icon={faEnvelope}/><span>xyz@gmail.com</span></div>
-                    <div><FontAwesomeIcon icon={faPhoneSquareAlt}/><span>+9746789877</span></div>
-                    <div><FontAwesomeIcon icon={faGlobe}/><span>hildegard.org</span></div>
-
+                    <p>{props.text.name}</p>
+                    <div><FontAwesomeIcon className="icon" icon={faEnvelope}/><span>{props.text.email}</span></div>
+                    <div><FontAwesomeIcon className="icon" icon={faPhoneSquareAlt}/><span>{props.text.phone}7</span></div>
+                    <div><FontAwesomeIcon className="icon" icon={faGlobe}/><span>http://{props.text.website}</span></div>
                 </section>
                 <section className="footer-container">
-                    <FontAwesomeIcon icon={faHeart}/>
-                    <FontAwesomeIcon icon={faPen}/>
-                    <FontAwesomeIcon icon={faTrash}/>
-
+                    <div className="br-right"><FontAwesomeIcon icon={farHeart}/></div>
+                    <div className="br-right"><FontAwesomeIcon icon={faPen}/></div>
+                    <div><FontAwesomeIcon icon={faTrash}/></div>
                 </section>
-            </section>
-            
-            
-        </div>
+            </section> 
+        </div>)
+        :(" ")}
+        </>
     )
 }
 
